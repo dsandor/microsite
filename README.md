@@ -28,4 +28,23 @@ There is still some hard coding here.  Things that need to be made dynamic:
 
 2. we should be fetching the manifest and then dynamically loading the scripts.
 
+#### Running the app
+
+In the `notification-app` folder install by running:
+
+```yarn```
+
+Then start the webpack watcher:
+
+```yarn start```
+
+Then in the `main-app` folder do the same.
+
+```yarn```
+
+Then start the react app.
+
+```yarn start```
+
+
 
