@@ -1,10 +1,13 @@
-var path = require('path');
+const path = require('path');
+const ManifestPlugin = require('webpack-manifest-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    //libraryTarget: 'commonjs2' /* use this and (externals: ['react', 'commonjs2']) if you are building a component for npm.
   },
   module: {
     rules: [
@@ -25,10 +28,18 @@ module.exports = {
       }, {
         test: /\.css$/,
         loader: 'css-loader'
-      }
+      },
+      {
+        test: /^((?!node_modules).)*global\.js$/,
+        //test: /global\.js$/,
+        exclude: /node_modules/,
+        use: [ 'script-loader' ]
+      },
     ]
   },
+  plugins: [
+    new ManifestPlugin()
+  ],
   externals: {
-    'react': 'commonjs react'
   }
 };

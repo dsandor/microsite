@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import * as ReactDOM from "react-dom";
+
+const e = React.createElement;
 
 class App extends Component {
   render() {
@@ -14,3 +17,6 @@ class App extends Component {
 }
 
 export default App;
+
+const domContainer = document.querySelector('#notification-app');
+ReactDOM.render(e(App), domContainer);
