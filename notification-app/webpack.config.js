@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    //libraryTarget: 'commonjs2'
+    //libraryTarget: 'commonjs2' /* use this and (externals: ['react', 'commonjs2']) if you are building a component for npm.
   },
   module: {
     rules: [
@@ -38,10 +38,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new ManifestPlugin(),
-    //new HtmlWebpackPlugin()
+    new ManifestPlugin()
   ],
   externals: {
-    // 'react': 'react'
   }
 };
