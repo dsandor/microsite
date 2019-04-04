@@ -19,4 +19,12 @@ class App extends Component {
 export default App;
 
 const domContainer = document.querySelector('#notification-app');
-ReactDOM.render(e(App), domContainer);
+
+window.microsite = {};
+window.microsite.notification = {
+  mount: () => {
+    ReactDOM.render(e(App), domContainer);
+  }
+};
+
+
