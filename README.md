@@ -46,5 +46,16 @@ Then start the react app.
 
 ```yarn start```
 
+### 03-expose-app-mount-in-script
+
+This branch explores a react application exposed as a mountable component. The host page will use the `window.microsite.app_name.mount()` function to have the ReactDOM create the and mount the site onto the parent site.
+
+Notes: 
+* Need to dynamically load the script.
+* Need to find the scripts to attach to parent site by inspecting the manifest.
+* Enumerate manifest to find scripts.
+* Come up with a dynamic way of mounting the micro apps.
+
+
 
 
