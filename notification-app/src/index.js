@@ -20,11 +20,11 @@ export default App;
 
 const domContainer = document.querySelector('#notification-app');
 
-window.microsite = {};
-window.microsite.notification = {
-  mount: () => {
-    ReactDOM.render(e(App), domContainer);
-  }
-};
+// window.microsite = {};
+// window.microsite.notification = {
+//   mount: () => {
+//     ReactDOM.render(e(App), domContainer);
+//   }
+// };
 
-
+window.__MICROSITE__.micrositeLoader(() => ReactDOM.render(e(App), domContainer));

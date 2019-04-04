@@ -584,12 +584,16 @@ exports.default = App;
 
 var domContainer = document.querySelector('#notification-app');
 
-window.microsite = {};
-window.microsite.notification = {
-  mount: function mount() {
-    ReactDOM.render(e(App), domContainer);
-  }
-};
+// window.microsite = {};
+// window.microsite.notification = {
+//   mount: () => {
+//     ReactDOM.render(e(App), domContainer);
+//   }
+// };
+
+window.__MICROSITE__.micrositeLoader(function () {
+  return ReactDOM.render(e(App), domContainer);
+});
 
 /***/ }),
 /* 7 */
