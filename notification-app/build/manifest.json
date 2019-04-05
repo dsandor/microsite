@@ -1,3 +1,4 @@
 {
-  "main.js": "index.js"
+  "main.js": "index.js",
+  "vendor~main.js": "1.index.js"
 }

@@ -46,5 +46,54 @@ Then start the react app.
 
 ```yarn start```
 
+### 03-expose-app-mount-in-script
 
+This branch explores a react application exposed as a mountable component. The host page will use the `window.microsite.app_name.mount()` function to have the ReactDOM create the and mount the site onto the parent site.
+
+Notes:
+
+* Need to dynamically load the script.
+* Need to find the scripts to attach to parent site by inspecting the manifest.
+* Enumerate manifest to find scripts.
+* Come up with a dynamic way of mounting the micro apps.
+
+Start the loader script http host (this would be hosted on a CDN somewhere) or simply added to the same S3 location of the main app.
+
+#### Port 9998 - The loader script.
+
+From the `loader` project folder.
+
+```sh
+http-server -p 9998 -c 0 --cors build/
+```
+
+#### Port 9999 - The compiled notification-app.
+
+From the `notification-app` project folder.
+
+```sh
+http-server -p 9999 -c 0 --cors build/
+```
+
+The following script tags are added in to the HTML of the main site.  This loads the loader script (webpack compiled output) and passes the configuration to the loader.
+
+```html
+  <script src="http://192.168.1.80:9998/index.js"></script>
+  <script>
+  
+    if (!window.__MICROSITE__) {
+      window.__MICROSITE__ = {};
+    }
+  
+    var microSites = {
+      'notification-app': {
+        mountPoint: 'notification-app', // default, key name
+        baseUrl: 'http://192.168.1.80:9999',
+        manifest: 'manifest.json'
+      }
+    };
+  
+    window.__MICROSITE__.Loader.loadSites(microSites, document);
+</script>
+```
 
