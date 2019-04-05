@@ -1,18 +1,13 @@
 {
-  "name": "notification-app",
+  "name": "loader",
   "version": "1.0.0",
-  "description": "",
-  "main": "build/index.js",
+  "description": "Microsite loader.",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "build": "webpack"
-  },
-  "author": "David Sandor",
-  "license": "MIT",
-  "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -22,14 +17,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-runtime": "^6.26.0",
-    "css-loader": "^2.1.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4",
-    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-manifest-plugin": "^2.0.4"
-  },
-  "dependencies": {}
+    "webpack-cli": "^3.3.0"
+  }
 }

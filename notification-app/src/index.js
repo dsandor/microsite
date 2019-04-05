@@ -27,4 +27,4 @@ const domContainer = document.querySelector('#notification-app');
 //   }
 // };
 
-window.__MICROSITE__.micrositeLoader(() => ReactDOM.render(e(App), domContainer));
+window.__MICROSITE__.mounter(() => ReactDOM.render(e(App), domContainer));
