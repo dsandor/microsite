@@ -43,7 +43,7 @@ export default class Loader {
   insertSiteResource(document, tag, source) {
     const scriptTag = document.createElement(tag),
       firstScriptTag = document.getElementsByTagName(tag)[0];
-    scriptTag.src = source;
+    scriptTag.src = source + '?uniqu=' + new Date().getTime();
     firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
   }
 }
