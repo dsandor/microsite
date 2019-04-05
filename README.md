@@ -97,3 +97,7 @@ The following script tags are added in to the HTML of the main site.  This loads
 </script>
 ```
 
+### 04-change-direction-of-mount
+
+Before this branch the direction of the mount call was from the child app to the main app. This branch changes that so that the main app initializes/mounts the child app and can therefore send configuration data to the child app such as props or state. This will also allow the main app to send the child app the element to mount to. That will allow us to have multiple instances of the same child app on the main site in different locations.
+
