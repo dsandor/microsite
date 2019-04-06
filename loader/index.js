@@ -32,10 +32,13 @@ export default class Loader {
       const manifest = await resp.json();
       console.log('manifest:', manifest);
 
+      // create a uuid for the site
+      config[site].micrositeId = this.uuidv4();
+
       for(let asset in manifest) {
         const assetUrl = `${siteConfig.baseUrl}/${manifest[asset]}`;
         console.log(`adding asset '${assetUrl}' to document.`);
-        this.insertSiteResource(document, 'script', assetUrl, config[site].mountPoint);
+        this.insertSiteResource(document, 'script', assetUrl, config[site].micrositeId);
       }
     }
 
@@ -51,7 +54,11 @@ export default class Loader {
 
     const interval = setInterval(() => {
       while (window.__MICROSITE__.sitesToMount.length > 0) {
-        window.__MICROSITE__.sitesToMount[0](document.querySelector(`#notification-app`), { test: 'hello' });
+        const siteToMount = window.__MICROSITE__.sitesToMount[0];
+        const siteConfig = this.findSiteConfig(siteToMount.micrositeId, config);
+        const mountPoint = siteConfig.mountPoint;
+
+        siteToMount.mount(document.querySelector(`#${mountPoint}`), siteConfig.props || {});
         window.__MICROSITE__.sitesToMount.shift();
         sitesToMount--;
       }
@@ -68,10 +75,23 @@ export default class Loader {
     }, 10);
   }
 
-  insertSiteResource(document, tag, source, mountPoint) {
+  findSiteConfig(micrositeId, config) {
+    for(let site in config) {
+      if (config[site].micrositeId === micrositeId) return config[site];
+    }
+  }
+
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16).replace('-', '');
+    });
+  }
+
+  insertSiteResource(document, tag, source, micrositeId) {
     const scriptTag = document.createElement(tag),
       firstScriptTag = document.getElementsByTagName(tag)[0];
-    scriptTag.src = source + '?mountPoint=' + mountPoint;
+    scriptTag.src = source + `?_microsite-id_=${micrositeId}`; // TODO: Might need to use the URL formatter for this.
     firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
   }
 }

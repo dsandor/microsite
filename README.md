@@ -101,3 +101,16 @@ The following script tags are added in to the HTML of the main site.  This loads
 
 Before this branch the direction of the mount call was from the child app to the main app. This branch changes that so that the main app initializes/mounts the child app and can therefore send configuration data to the child app such as props or state. This will also allow the main app to send the child app the element to mount to. That will allow us to have multiple instances of the same child app on the main site in different locations.
 
+So far, this is working. We can configure a single react app to be mounted in multiple divs so a single app is reusable.
+
+We stamp the site with a uuid and pass that uuid in the script src url as a query string param that we parse app side to send back to the parent. (we need to use a url parser).
+
+`props` can also be sent to the react app.
+
+TODO: 
+
+* Make the child react app side of this into a npm module that can just be included to simplify the process of making a react app into a child.
+* Clean up the loader code.
+* Make the part in the main app into an npm module so it can easily be added to any main app.
+
+ 
