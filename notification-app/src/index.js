@@ -33,11 +33,14 @@ function getMicrositeId() {
   return mountPoint;
 }
 
-window.__MICROSITE__.sitesToMount.push(
-  {
-    mount: (element, config) => {
-      ReactDOM.render(React.createElement(App, config), element);
-    },
-    micrositeId: getMicrositeId()
-  });
+function registerMicrosite(component) {
+  window.__MICROSITE__.sitesToMount.push(
+    {
+      mount: (element, config) => {
+        ReactDOM.render(React.createElement(App, config), element);
+      },
+      micrositeId: getMicrositeId()
+    });
+}
 
+registerMicrosite(App);
