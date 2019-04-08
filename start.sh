@@ -4,4 +4,6 @@ http-server -p 9999 -c 0 --cors notification-app/build &
 cd main-app
 yarn start &
 cd ../notification-app
+yarn start &
+cd ../loader
 yarn start
