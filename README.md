@@ -2,6 +2,34 @@
 
 This repo is an exploration into Micro-Site front end architecture with React. I will create branches with various evolutions of the code and for simple experimentation.
 
+## Prerequisites
+
+Install **[yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable)**.
+
+Install **[http-server](https://github.com/indexzero/http-server#readme)**.
+
+## Installing and getting everything running
+
+To get this all working you can do the following:
+
+**From the root folder:**
+
+```sh
+cd main-app
+yarn insall
+
+cd ../notification-app
+yarn install
+
+cd ../loader
+yarn install
+
+cd ..
+./start.sh
+```
+
+That should install all the dependencies for all 3 parts of the app and start the servers.
+
 ## Branch Notes
 
 ### 01-Component
