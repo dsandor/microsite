@@ -27,26 +27,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div>
-      <div id="notification-app">
+      <div id="notification-app"></div>
     </div>
-    <div id="main-app"></div></div>
+    <div id="main-app"></div>
   </body>
   <script src="http://localhost:9998/index.js"></script>
   <script>
-
-    if (!window.__MICROSITE__) {
-      window.__MICROSITE__ = {};
-    }
-
     var microSites = {
       'notification-app': {
         mountPoint: 'notification-app', // default, key name
         baseUrl: 'http://localhost:9999',
         manifest: 'manifest.json',
-        props: { test: 'hello world' }
+        props: { test: 'This is a prop from main-app.' }
       }
     };
 
-    window.__MICROSITE__.Loader.loadSites(microSites, document);
+    window.micrositeLoader(microSites);
 </script>
 </html>

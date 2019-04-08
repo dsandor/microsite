@@ -94,6 +94,10 @@ export default class Loader {
     scriptTag.src = source + `?_microsite-id_=${micrositeId}`; // TODO: Might need to use the URL formatter for this.
     firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag);
   }
+
+  init() {
+
+  }
 }
 
 if (window) {
@@ -105,5 +109,9 @@ if (window) {
     mount();
   });
   microsite.sitesToMount = [];
+
+  global.micrositeLoader = window.micrositeLoader = window.__MICROSITE__.load = function(config) {
+    microsite.Loader.loadSites(config, document);
+  }
 }
 
